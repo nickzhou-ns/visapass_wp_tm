@@ -55,10 +55,10 @@ add_action('visapass_header_style', 'visapass_check_header', 10);
 */
 
 function visapass_header_style_1() {
-    $visapass_topbar_switch = get_theme_mod('visapass_topbar_switch', false);
+    $visapass_topbar_switch = get_theme_mod('visapass_topbar_switch', true);
     $visapass_side_hide = get_theme_mod('visapass_side_hide', false);
     $visapass_show_cta = get_theme_mod('visapass_show_cta', false);
-    $visapass_showheader_search = get_theme_mod('visapass_showheader_search' , false);
+    $visapass_showheader_search = get_theme_mod('visapass_showheader_search' ,true);
 
     $visapass_email = get_theme_mod('visapass_email', __('info@example.com','visapass'));
     $visapass_extra_mail = get_theme_mod('visapass_extra_mail', __('support@gmail.com','visapass'));
@@ -75,7 +75,7 @@ function visapass_header_style_1() {
     $visapass_mcontact_cell = get_theme_mod('visapass_mcontact_cell', __('(555) 5802 3059','visapass'));
 
 
-    $visapass_header_right = get_theme_mod('visapass_header_right', false);
+    $visapass_header_right = get_theme_mod('visapass_header_right', true);
     $visapass_menu_col =  $visapass_header_right ? 'col-xxl-7 col-xl-7 col-lg-7 col-6 justify-content-end' : 'col-xxl-10 col-xl-10 col-lg-10 col-6 d-flex align-items-center justify-content-end';
 
     if (rtl_enable()) {
@@ -959,7 +959,7 @@ function visapass_breadcrumb_func()
         $hide_bg_img = function_exists('get_field') ? get_field('hide_breadcrumb_background_image', $_id) : '';
 
         // get_theme_mod
-        $bg_img_url = get_template_directory_uri() . '/assets/img/page-title/page-title.jpg';
+        $bg_img_url = get_template_directory_uri() . '/assets/img/ab-fact/abfact.jpg';
         $bg_img = get_theme_mod('breadcrumb_bg_img');
         $visapass_breadcrumb_shape_switch = get_theme_mod('visapass_breadcrumb_shape_switch', true);
         $breadcrumb_info_switch = get_theme_mod('breadcrumb_info_switch', true);
@@ -972,7 +972,7 @@ function visapass_breadcrumb_func()
 
 
         <!-- page title area start -->
-        <div class="page-title__area pt-110 <?php print esc_attr($breadcrumb_class); ?>" data-background="<?php print esc_attr($bg_img);?>">
+        <div class="page-title__area pt-110 <?php print esc_attr($breadcrumb_class); ?>" data-background="<?php print esc_attr($bg_img_url);?>">
             <div class="container">
                 <div class="row">
                     <div class="col-xxl-12">

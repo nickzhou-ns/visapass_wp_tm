@@ -25,6 +25,9 @@ get_header();
 						while(  have_posts() ): the_post();
 							get_template_part('template-parts/content','page');
 						endwhile;
+						if ( is_page(23) ) : 
+							
+						endif; 
 					else:
 						get_template_part('template-parts/content', 'none');
 					endif; ?>

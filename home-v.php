@@ -23,7 +23,7 @@ get_header();
 		<div class="row">
 			<div class="col-xl-12">
 				<div class="visapass-page-content">
-                    
+                
 				</div>
 			</div>
 		</div>
