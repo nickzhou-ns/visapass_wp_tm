@@ -1,0 +1,28 @@
+<h3>Change Log</h3>
+
+<h2>19 October 2022 &amp; Version 1.0.4</h2>
+<pre>
+- 1. Updated: WordPress Tested UpTO 6.x.x
+- 2. Fixed: Elementor Plugin Update Issue.
+</pre>
+
+<h2>5 September 2022 &amp; Version 1.0.3</h2>
+<pre>
+- 1. Fixed: Breadcrumb Issues.
+</pre>
+
+<h2>25 February 2021 &amp; Version 1.0.2</h2>
+<pre>
+- 1. Added: Header Logo Size.
+</pre>
+
+<h2>25 February 2021 &amp; Version 1.0.1</h2>
+<pre>
+- 1. Fixed: Hero Widget Issue.
+- 2. Fixed: About Widget Issue.
+</pre>
+
+<h2> 11 January 2022    &amp; Version 1.0.0</h2>
+<pre>
+- 1. Initial Released Visapass.
+</pre>
