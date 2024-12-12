@@ -26,7 +26,18 @@ get_header();
 							get_template_part('template-parts/content','page');
 						endwhile;
 						if ( is_page(23) ) : 
-							
+							get_template_part('about/inc_About_us_area');
+							get_template_part('about/inc_Ab_fact_area_about');
+							get_template_part('about/inc_About_Tabs_area');
+							get_template_part('about/inc_Histry_Tabs_area');
+							get_template_part('about/inc_intro_area_about');
+							get_template_part('about/inc_testimonail_about');
+						endif; 
+						if ( is_page(30) ) : 
+							get_template_part('contact/inc_Contact_area');
+							get_template_part('contact/inc_Contact_group_info');
+							get_template_part('contact/inc_clients_section');
+
 						endif; 
 					else:
 						get_template_part('template-parts/content', 'none');

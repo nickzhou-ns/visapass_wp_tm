@@ -16,19 +16,19 @@ Template Name: Custom Home
  */
 
 get_header();
-?>
+get_template_part('index/inc_hero_area_index');
+get_template_part('index/inc_visa_area_index');
+get_template_part('index/inc_featurs_area_index');
+get_template_part('index/inc_Scholarship_Programs');
+get_template_part('index/inc_About_start');
+get_template_part('index/inc_fact_area');
+get_template_part('index/inc_popularct');
+get_template_part('index/inc_Country_all');
+get_template_part('index/inc_Globall_area_index');
+get_template_part('index/inc_Calltoaction_area');
+get_template_part('index/inc_team_area');
+get_template_part('index/inc_Our_Partners');
+get_template_part('index/inc_testimonail_index');
+get_template_part('index/inc_Blog');
 
-<div class="page-area pt-120 pb-120">
-    <div class="container">
-		<div class="row">
-			<div class="col-xl-12">
-				<div class="visapass-page-content">
-                
-				</div>
-			</div>
-		</div>
-    </div>
-</div>
-
-<?php
 get_footer();

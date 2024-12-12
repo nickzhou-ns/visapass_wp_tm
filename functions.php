@@ -120,6 +120,21 @@ endif;
 add_action( 'after_setup_theme', 'visapass_setup' );
 
 
+function get_my_global_variable()
+{
+    // 获取当前访问的域名
+    $domain_url = $_SERVER['HTTP_HOST'];
+
+    // 判断是否为本地环境
+    if (str_contains($domain_url, 'localhost')) {
+        // 本地路径
+        return "http://localhost/visapass_wp/wp-content/themes/visapass_wp_tm/";
+    } else {
+        // 生产环境使用标准的 WordPress 主题路径
+        return  '/wp-content/themes/visapass_wp_tm/';
+    }
+}
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -436,6 +451,7 @@ if( !function_exists('visapass_comment') ) {
 						<?php print get_avatar($comment, 102, null, null, array('class'=> array())); ?>
 					</div>
 					<div class="comments-text">
+						
 						<div class="avatar-name">
 							<h5><?php print get_comment_author_link(); ?></h5>
 							<span><?php comment_time( get_option('date_format') ); ?></span>
@@ -518,3 +534,88 @@ function visapass_elementor_library() {
 	}
 	return $pagearray;
 }
+
+class Sidebar_Recent_News_Widget extends WP_Widget {
+
+    // 初始化小工具
+    public function __construct() {
+        parent::__construct(
+            'sidebar_recent_news', // 小工具ID
+            __('Sidebar Recent News', 'textdomain'), // 小工具名称
+            array('description' => __('Displays recent posts with custom styling.', 'textdomain'))
+        );
+    }
+
+    // 渲染小工具的内容
+    public function widget($args, $instance) {
+        echo $args['before_widget']; // 开始小工具HTML
+
+        // 标题
+        if (!empty($instance['title'])) {
+            echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
+        }
+
+        // 自定义内容：输出最新文章
+        $query_args = array(
+            'posts_per_page' => 3,
+            'post_status' => 'publish',
+        );
+        $recent_posts = new WP_Query($query_args);
+
+        if ($recent_posts->have_posts()) { 
+            echo '<div class="sidebar_recent_news_widget">';
+            while ($recent_posts->have_posts()) {
+                $recent_posts->the_post();
+                ?>
+                <div class="sidebar--widget__post mb-20">
+                    <div class="sidebar__post--thumb">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php if (has_post_thumbnail()) { ?>
+                                <div class="post__img" style="background-image: url('<?php the_post_thumbnail_url('medium'); ?>');"></div>
+                            <?php } else { ?>
+                                <div class="post__img" style="background-image: url('404.jpg');"></div>
+                            <?php } ?>
+                        </a>
+                    </div>
+                    <div class="sidebar__post--text">
+                        <h4 class="sidebar__post--title">
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </h4>
+                        <span><?php echo get_the_date(); ?></span>
+                    </div>
+                </div>
+                <?php
+            }
+            echo '</div>';
+        } else {
+            echo '<p>No recent posts available.</p>';
+        }
+
+        wp_reset_postdata(); // 重置查询
+        echo $args['after_widget']; // 结束小工具HTML
+    }
+
+    // 小工具设置表单（可选）
+    public function form($instance) {
+        $title = !empty($instance['title']) ? $instance['title'] : __('Recent News', 'textdomain');
+        ?>
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_attr_e('Title:', 'textdomain'); ?></label>
+            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>">
+        </p>
+        <?php
+    }
+
+    // 更新小工具设置（可选）
+    public function update($new_instance, $old_instance) {
+        $instance = array();
+        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
+        return $instance;
+    }
+}
+
+// 注册小工具
+function register_sidebar_recent_news_widget() {
+    register_widget('Sidebar_Recent_News_Widget');
+}
+add_action('widgets_init', 'register_sidebar_recent_news_widget');

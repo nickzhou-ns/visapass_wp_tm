@@ -12,28 +12,36 @@
 
 <!doctype html>
 <html <?php language_attributes(); ?>>
+
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-    <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <?php if (is_singular() && pings_open(get_queried_object())): ?>
     <?php endif; ?>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<?php wp_head(); ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>  const { createApp } = Vue;</script>
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
-    
 
-    <?php if(!empty($visapass_preloader)) : ?>
-    <!-- preloader -->
-    <div id="preloader">
-        <div class="preloader">
-            <span></span>
-            <span></span>
+
+    <?php if (!empty($visapass_preloader)): ?>
+        <!-- preloader -->
+        <div id="preloader">
+            <div class="preloader">
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </div>
-    <!-- preloader end  -->
+        <!-- preloader end  -->
     <?php endif; ?>
 
     <!-- back to top start -->
@@ -51,14 +59,7 @@
     <?php do_action('visapass_header_style'); ?>
 
 
-    
+
     <!-- header end -->
     <!-- wrapper-box start -->
     <?php do_action('visapass_before_main_content'); ?>
-    
-
-
-
-
-
-        
